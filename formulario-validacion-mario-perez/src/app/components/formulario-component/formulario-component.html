@@ -1,0 +1,128 @@
+<form [formGroup]="reactiveForm" (ngSubmit)=onSubmit()>
+
+
+  <label for="nombre">Nombre: </label>
+  <input id="nombre" type="text" formControlName="nombre" />
+
+    @if(nombre.hasError('required')){
+        <div>El nombre es obligatorio</div>
+    }
+    @if (nombre.hasError('minlength')) {
+        <div>El nombre debe de tener al menos 2 letras</div>
+    }
+    @if(nombre.hasError('maxlength')){
+        <div>El nombre no debe de tener más de 30 letras</div>
+    }
+
+    @if(nombre.hasError('pattern')){
+        <div>Solo se permiten letras</div>
+    }
+
+  <label for="apellidos">Apellidos: </label>
+  <input id="apellidos" type="text" formControlName="apellidos" />
+
+  
+    @if(reactiveForm.get('apellidos')?.dirty || reactiveForm.get('apellidos')?.touched){
+        @if (reactiveForm.get('apellidos')?.hasError('apellidos','required')) {
+            <div>El apellido es obligatorio</div>
+        }
+        
+    }
+    @if(reactiveForm.get('apellidos')?.dirty || reactiveForm.get('apellidos')?.touched){
+        @if (reactiveForm.get('apellidos')?.hasError('apellidos','required')) {
+            <div>El apellido tiene que tener al menos 2 letras</div>
+        }
+        
+    }
+    @if(reactiveForm.get('apellidos')?.dirty || reactiveForm.get('apellidos')?.touched && reactiveForm.get('apellidos')?.hasError('maxlength')){
+        <div>El apellido no debe de tener más de 30 letras</div>
+    }
+
+    @if(reactiveForm.get('apellidos')?.dirty || reactiveForm.get('apellidos')?.touched ){
+        @if(reactiveForm.get('apellidos')?.hasError('pattern')){
+            <div>Solo se permiten letras</div>
+        }
+        
+    }
+
+
+  <label for="telefono">Teléfono: </label>
+  <input id="telefono" type="text" formControlName="telefono" />
+
+  
+    @if(reactiveForm.get('telefonoCont')?.dirty||reactiveForm.get('telefonoCont')?.touched){
+        @if (reactiveForm.get('telefonoCont')?.hasError('required')) {
+
+            <div>El nombre es obligatorio</div>
+
+        }
+        
+    }
+
+    @if(reactiveForm.get('telefonoCont')?.dirty||reactiveForm.get('telefonoCont')?.touched){
+        @if (reactiveForm.get('telefonoCont')?.hasError('required')) {
+
+            <div>El teléfono no es válido</div>
+
+        }
+        
+    }
+
+
+  <label for="email">Email: </label>
+  <input id="email" type="text" formControlName="email" />
+
+    @if(email.hasError('required')){
+        <div>El email es obligatorio</div>
+    }
+
+    @if(email.hasError('email')){
+        <div>Formato de email no válido</div>
+    }
+
+    <label for="mascota">Nombre de mascota: </label>
+    <input id="mascota" type="text" formControlName="nombreMascota" />
+
+    @if(nombreMascota.hasError('required')){
+        <div>El nombre de la mascota es obligatorio</div>
+    }
+
+    @if(nombreMascota.hasError('pattern')){
+        <div>Solo letras, espacios y guiones</div>
+    }
+
+    @if(nombreMascota.hasError('minlength')){
+        <div>Entre 2 y 20 caracteres</div>
+    }
+
+    @if(nombreMascota.hasError('maxlength')){
+        <div>Entre 2 y 20 caracteres</div>
+    }
+
+    <label for="especie">Especie: </label>
+    <select id="especie" type="text" formControlName="especie">
+        <option value="Perro">Perro</option>
+        <option value="Gato">Gato</option>
+        <option value="Ave">Ave</option>
+        <option value="Otro">Otro</option>
+    </select>
+
+    @if(especie.hasError('required')){
+        <div>Selecciona una especie</div>
+    }
+
+    <label for="sexo">Sexo: </label>
+    <select id="sexo" type="radio" formControlName="sexo">
+        <option value="Macho">Macho</option>
+        <option value="Hembra">Hembra</option>
+    </select>
+
+    @if(sexo.hasError('required')){
+        <div>Indica el sexo de la mascota</div>
+    }
+
+
+
+</div>
+
+</form>
